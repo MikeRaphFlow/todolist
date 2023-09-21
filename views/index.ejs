@@ -1,0 +1,22 @@
+<%- include("partials/header.ejs") %>
+    <div>
+        <div class="form-container">
+            <form action="/submit" method="POST">
+                <input type="text" name="nuevaNota" placeholder="Nueva Nota" class="nota">
+                <input type="submit" value="Agregar" id="agregar" class="botonnota">
+            </form>
+        </div>
+        <ul>
+            <% if (locals.toDoList) {for (let i = 0; i < toDoList.length ; i++) {%>
+                <li><input type="checkbox" class="checkbox"><span><%= toDoList[i] %></span>
+                    <form action="/eliminar" method="POST">
+                        <input type="hidden" name="indice" value="<%= i %>">
+                        <button type="submit" class="eliminar">X</button>
+                    </form>
+                </li>
+                <%}}
+                else %>
+        </ul>
+    </div>
+    </div>
+    <%- include("partials/footer.ejs") %>

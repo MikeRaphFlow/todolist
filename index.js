@@ -11,11 +11,11 @@ let lista = [];
 let listaLaburo = [];
 
 app.get("/", (req, res) => {
-    res.render("index.ejs")
+    res.render("index.ejs", { toDoList: lista })
 });
 
 app.get("/laburo", (req, res) => {
-    res.render("work.ejs")
+    res.render("work.ejs", { toDoListLaburo: listaLaburo })
 });
 
 app.post("/submit", (req, res) => {

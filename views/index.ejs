@@ -1,16 +1,18 @@
 <%- include("partials/header.ejs") %>
     <div>
         <div class="form-container">
-            <form action="/submit" method="POST">
-                <input type="text" name="nuevaNota" placeholder="Nueva Nota" class="nota">
-                <input type="submit" value="Agregar" id="agregar" class="botonnota">
+            <form action="/" method="POST">
+                    <input type="text" name="nuevaNota" id="miInput" placeholder="Nueva Nota" class="nota">
+                    <input type="hidden" name="listTitle" value="<%= listTitle %>">
+                    <button type="submit" id="agregar" class="botonnota">Agregar</button>          
             </form>
         </div>
         <ul>
             <% if (locals.toDoList) {for (let i = 0; i < toDoList.length ; i++) {%>
-                <li><input type="checkbox" class="checkbox"><span><%= toDoList[i] %></span>
+                <li><input type="checkbox" class="checkbox"><span><%= toDoList[i].name %></span>
                     <form action="/eliminar" method="POST">
-                        <input type="hidden" name="indice" value="<%= i %>">
+                        <input type="hidden" name="indice" value="<%= toDoList[i]._id %>">
+                        <input type="hidden" name="listTitle" value="<%= listTitle %>">
                         <button type="submit" class="eliminar">X</button>
                     </form>
                 </li>

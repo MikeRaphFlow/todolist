@@ -2,21 +2,22 @@
     <div>
         <div class="form-container">
             <form action="/laburo" method="POST">
-                <input type="text" name="nuevaNotaLaburo" placeholder="Nueva Nota Laboral" class="nota">
+                <input type="text" name="nuevaNotaLaburo" id="miInput" placeholder="Nueva Nota Laboral" class="nota">
                 <input type="submit" value="Agregar" id="agregar" class="botonnota">
             </form>
         </div>
         <ul>
-            <% if (locals.toDoListLaburo) {for (let i = 0; i < toDoListLaburo.length ; i++) {%>
-                <li><input type="checkbox" class="checkbox"><span><%= toDoListLaburo[i] %></span>
+            <% if (locals.toDoListLaburo) { toDoListLaburo.forEach(itemLaburo => {%>
+                <li><input type="checkbox" class="checkbox"><span><%= itemLaburo.name %></span>
                     <form action="/eliminarLaburo" method="POST">
-                        <input type="hidden" name="indice" value="<%= i %>">
+                        <input type="hidden" name="indice" value="<%= itemLaburo._id %>">
                         <button type="submit" class="eliminar">X</button>
                     </form>
                 </li>
-                <%}}
+                <%})}
                 else %>
         </ul>
     </div>
     </div>
+    
     <%- include("partials/footer.ejs") %>
